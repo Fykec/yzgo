@@ -98,7 +98,7 @@ func (c *YZClient) sendRequest(rawURL string, method string, params map[string]s
 			}
 			httpURL = strings.TrimRight(httpURL, "&")
 		}
-		println(httpURL)
+		// println(httpURL)
 		req, err = http.NewRequest("GET", httpURL, nil)
 
 	} else if "POST" == strings.ToUpper(method) {
