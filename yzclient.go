@@ -30,10 +30,10 @@ func getMd5String(src string) string {
 
 // YZClient standard for Youzan Open API Client
 type YZClient struct {
-	appID     string
-	appSecret string
-	isOAuth bool
-	accessToken string
+	AppID     string
+	AppSecret string
+	IsOAuth bool
+	AccessToken string
 }
 
 func (c *YZClient) getSortedParamsText(params map[string]string) string {
@@ -56,8 +56,8 @@ func (c *YZClient) getSortedParamsText(params map[string]string) string {
 func (c *YZClient) getSignedParams(params map[string]string) map[string]string {
 	timestamp := time.Now().Format(TimeFormatter)
 	format := "json"
-	appID := c.appID
-	appSecret := c.appSecret
+	appID := c.AppID
+	appSecret := c.AppSecret
 	v := "1.0"
 	signMethod := "md5"
 
@@ -127,10 +127,10 @@ func (c *YZClient) Invoke(apiName string, version string, method string, params 
 	action := apiParts[len(apiParts)-1]
 
 	var paramsMap map[string]string
-	if c.isOAuth {
+	if c.IsOAuth {
 		httpURL += "/oauthentry"
 		paramsMap = params
-		paramsMap["access_token"] = c.accessToken
+		paramsMap["access_token"] = c.AccessToken
 	} else {
 		httpURL += "/entry"
 		paramsMap = c.getSignedParams(params)
