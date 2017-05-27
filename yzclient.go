@@ -36,21 +36,19 @@ type YZClient struct {
 	AccessToken string
 }
 
-func (c *YZClient) getSortedParamsText(params map[string]string) string {
+func (c *YZClient) getSign(secret string, params map[string]string) string {
 	var keys []string
 	for k := range params {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
-	appSecret := params["app_secret"]
 
-	plainText := appSecret
+	plainText := secret
 	for _, key := range keys {
 		plainText += key + params[key]
 	}
-	plainText += appSecret
-
-	return plainText
+	plainText += secret
+	return getMd5String(plainText)
 }
 
 func (c *YZClient) getSignedParams(params map[string]string) map[string]string {
@@ -65,7 +63,6 @@ func (c *YZClient) getSignedParams(params map[string]string) map[string]string {
 		"timestamp":   timestamp,
 		"format":      format,
 		"app_id":      appID,
-		"app_secret":  appSecret,
 		"v":           v,
 		"sign_method": signMethod,
 	}
@@ -73,9 +70,8 @@ func (c *YZClient) getSignedParams(params map[string]string) map[string]string {
 	for key, value := range params {
 		paramsMap[key] = value
 	}
-	plainText := c.getSortedParamsText(paramsMap)
-	md5Text := getMd5String(plainText)
-	paramsMap["sign"] = md5Text
+	sign := c.getSign(appSecret, paramsMap)
+	paramsMap["sign"] = sign
 
 	return paramsMap
 }
