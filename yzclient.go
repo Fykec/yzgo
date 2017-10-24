@@ -139,7 +139,6 @@ func (c *YZClient) sendRequest(rawURL string, method string, params map[string]i
 			}
 			httpURL = strings.TrimRight(httpURL, "&")
 		}
-		// println(httpURL)
 		req, err = http.NewRequest("GET", httpURL, nil)
 
 	} else if "POST" == strings.ToUpper(method) {
@@ -156,7 +155,7 @@ func (c *YZClient) sendRequest(rawURL string, method string, params map[string]i
 		panic(err)
 	}
 
-	req.Header.Add("User-Agent", "X-YZ-Client 1.0.0 - Golang")
+	req.Header.Add("User-Agent", "X-YZ-Client 2.0.0 - Golang")
 	return httpClient.Do(req)
 }
 
@@ -193,5 +192,6 @@ func (c *YZClient) Invoke(apiName string, version string, method string, params 
 		result, err = ioutil.ReadAll(resp.Body)
 	}
 
+	//println(string(result))
 	return result, err
 }

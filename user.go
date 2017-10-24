@@ -24,7 +24,7 @@ type User struct {
 	Tags         []Tag       `json:"tags"`
 	TradedMoney  string      `json:"traded_money"`
 	TradedNum    float64     `json:"traded_num"`
-	UserID       string      `json:"user_id"`
+	UserID       int         `json:"user_id"`
 	WeixinOpenID string      `json:"weixin_openid"`
 }
 
@@ -38,8 +38,13 @@ func (c *YZClient) UsersWeixinFollowersPull(params Params) ([]User, error) {
 
 	respBytes, err := json.Marshal(rawResponse.Response["users"])
 
+	//println(string(respBytes))
+
 	var users []User
 	err = json.Unmarshal(respBytes, &users)
+	if err != nil {
+		panic(err)
+	}
 	return users, err
 }
 
