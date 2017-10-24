@@ -13,7 +13,7 @@ func PrintResult(retBytes []byte, err error) {
 	if err != nil {
 		panic(err)
 	}
-	response, err := getRawResponse(retBytes)
+	response, err := ParseRawResponse(retBytes)
 	// string to json help to have a better chinese printting https://segmentfault.com/q/1010000006778053
 	jsonBytes, _ := json.Marshal(response)
 

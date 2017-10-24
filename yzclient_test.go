@@ -42,7 +42,7 @@ func TestCrmFansPointsGet(t *testing.T) {
 	apiName := "youzan.users.weixin.followers.pull"
 	printTestName(apiName)
 	ret, err := client.Invoke(apiName, "3.0.0", "GET", Params{"after_fans_id": "0"}, Params{})
-	jsonObject, err := getRawResponse(ret)
+	jsonObject, err := ParseRawResponse(ret)
 
 	response := jsonObject.Response
 
@@ -75,7 +75,7 @@ func TestTradesSoldGet(t *testing.T) {
 	apiName := "youzan.users.weixin.followers.pull"
 	printTestName(apiName)
 	ret, err := client.Invoke(apiName, "3.0.0", "GET", Params{"after_fans_id": "0"}, Params{})
-	jsonObject, err := getRawResponse(ret)
+	jsonObject, err := ParseRawResponse(ret)
 
 	response := jsonObject.Response
 

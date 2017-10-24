@@ -73,7 +73,7 @@ type RawResponse struct {
 	ErrorResponse ErrorResponse          `json:"error_response"`
 }
 
-func getRawResponse(retBytes []byte) (RawResponse, error) {
+func ParseRawResponse(retBytes []byte) (RawResponse, error) {
 	var jsonObject RawResponse
 	err := json.Unmarshal(retBytes, &jsonObject)
 	return jsonObject, err

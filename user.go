@@ -31,7 +31,7 @@ type User struct {
 //UsersWeixinFollowersPull "youzan.users.weixin.followers.pull"
 func (c *YZClient) UsersWeixinFollowersPull(params Params) ([]User, error) {
 	retBytes, err := c.Invoke("youzan.users.weixin.followers.pull", APIVersionDefault, http.MethodGet, params, Params{})
-	rawResponse, err := getRawResponse(retBytes)
+	rawResponse, err := ParseRawResponse(retBytes)
 	if err != nil {
 		panic(err)
 	}
@@ -51,7 +51,7 @@ func (c *YZClient) UsersWeixinFollowersPull(params Params) ([]User, error) {
 //UsersWeixinFollowersGet "youzan.users.weixin.followers.get"
 func (c *YZClient) UsersWeixinFollowersGet(params Params) ([]User, error) {
 	retBytes, err := c.Invoke("youzan.users.weixin.followers.get", APIVersionDefault, http.MethodGet, params, Params{})
-	rawResponse, err := getRawResponse(retBytes)
+	rawResponse, err := ParseRawResponse(retBytes)
 
 	if err != nil {
 		panic(err)
@@ -66,7 +66,7 @@ func (c *YZClient) UsersWeixinFollowersGet(params Params) ([]User, error) {
 //UsersWeixinFollowerGets "youzan.users.weixin.follower.gets"
 func (c *YZClient) UsersWeixinFollowerGets(params Params) ([]User, error) {
 	retBytes, err := c.Invoke("youzan.users.weixin.follower.gets", APIVersionDefault, http.MethodGet, params, Params{})
-	rawResponse, err := getRawResponse(retBytes)
+	rawResponse, err := ParseRawResponse(retBytes)
 
 	if err != nil {
 		panic(err)
@@ -81,7 +81,7 @@ func (c *YZClient) UsersWeixinFollowerGets(params Params) ([]User, error) {
 //UsersWeixinFollowerGet "youzan.users.weixin.follower.get"
 func (c *YZClient) UsersWeixinFollowerGet(params Params) (User, error) {
 	retBytes, err := c.Invoke("youzan.users.weixin.follower.get", APIVersionDefault, http.MethodGet, params, Params{})
-	rawResponse, err := getRawResponse(retBytes)
+	rawResponse, err := ParseRawResponse(retBytes)
 
 	if err != nil {
 		panic(err)
@@ -96,7 +96,7 @@ func (c *YZClient) UsersWeixinFollowerGet(params Params) (User, error) {
 //UsersWeixinFollowerTagsAdd "youzan.users.weixin.follower.tags.add"
 func (c *YZClient) UsersWeixinFollowerTagsAdd(params Params) (User, error) {
 	retBytes, err := c.Invoke("youzan.users.weixin.follower.tags.add", APIVersionDefault, http.MethodGet, params, Params{})
-	rawResponse, err := getRawResponse(retBytes)
+	rawResponse, err := ParseRawResponse(retBytes)
 
 	if err != nil {
 		panic(err)
@@ -111,7 +111,7 @@ func (c *YZClient) UsersWeixinFollowerTagsAdd(params Params) (User, error) {
 //UserBasicGet ""
 func (c *YZClient) UserBasicGet() ([]byte, error) {
 	retBytes, err := c.Invoke("youzan.user.basic.get", APIVersionDefault, http.MethodGet, Params{}, Params{})
-	rawResponse, err := getRawResponse(retBytes)
+	rawResponse, err := ParseRawResponse(retBytes)
 
 	if err != nil {
 		panic(err)
